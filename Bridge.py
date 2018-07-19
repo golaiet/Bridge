@@ -22,9 +22,6 @@ def search(root, term, string=""):
     return list
 
 
-# test
-
-
 class Entity():
 
     def __init__(self, root):
@@ -89,4 +86,18 @@ class Bridge():
                 return cls
         return False
 
+    def search_class(self, term):
+        reg = re.compile(term)
+        list = []
+        for cls in self.classes:
+            if reg.search(cls.name.lower()):
+                list.append(cls)
+        return list
+
 bridge = Bridge('BRIDGE.xmi')
+
+for entity in bridge.search_class('bio'):
+    print(entity.name)
+
+for feature in bridge.get_class("BiologicEntity").get_features():
+    print(feature.attrib["name"])
