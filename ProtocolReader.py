@@ -82,3 +82,42 @@ for line in list:
         print("XXX:" + line)
 
 # en = Engine('0011.pdf')
+
+
+class ProtocolReader():
+
+    def __init__(self, path):
+        self.path = path
+        self.text = self.text_cleanup(self.convert_pdf_to_txt(path))
+    
+    def text_cleanup(self, text):
+        ct = str(text).lower() # ct = clean text
+        for i in range(1000):
+            ct = ct.replace("  ", " ")
+            ct = ct.replace("\n\n", "\n")
+            ct = ct.replace("\n \n", "\n")
+        return ct
+
+    def convert_pdf_to_txt(path):
+        rsrcmgr = PDFResourceManager()
+        retstr = StringIO()
+        codec = 'utf-8'
+        laparams = LAParams()
+        device = TextConverter(rsrcmgr, retstr, codec=codec, laparams=laparams)
+        fp = open(path, 'rb')
+        interpreter = PDFPageInterpreter(rsrcmgr, device)
+        password = ""
+        maxpages = 0
+        caching = True
+        pagenos = set()
+
+        for page in PDFPage.get_pages(fp, pagenos, maxpages=maxpages, password=password, caching=caching,
+                                      check_extractable=True):
+            interpreter.process_page(page)
+
+        text = retstr.getvalue()
+
+        fp.close()
+        device.close()
+        retstr.close()
+        return text

@@ -3,19 +3,17 @@ import re # regex
 import numpy as np
 
 
-def search(root, term, string=""):
+def search(root, term):
     reg = re.compile(term)
     list = []
     if reg.search(root.tag.lower()):
-        print(root.tag + " : " + string + " : " + str(root.attrib))
         list.append(root)
 
     for i in range(len(root)):
-        temp_list = search(root[i], term, string + "[" + str(i) + "]")
+        temp_list = search(root[i], term)
         try:
             for item in temp_list:
                 list.append(item)
-                # print(item)
         except:
             pass
 
@@ -96,8 +94,12 @@ class Bridge():
 
 bridge = Bridge('BRIDGE.xmi')
 
+# examples
+
+# how to search a class in bridge
 for entity in bridge.search_class('bio'):
     print(entity.name)
 
+# how to print class features by name
 for feature in bridge.get_class("BiologicEntity").get_features():
     print(feature.attrib["name"])
