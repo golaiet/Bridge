@@ -11,9 +11,9 @@ def search(root, term):
         list.append(root)
 
     for i in range(len(root)):
-        temp_list = search(root[i], term)
+        search_list = search(root[i], term)
         try:
-            for item in temp_list:
+            for item in search_list:
                 list.append(item)
         except:
             pass
