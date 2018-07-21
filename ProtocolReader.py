@@ -1,7 +1,7 @@
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.converter import TextConverter
 from pdfminer.layout import LAParams
-from pdfminer.pdfpage import PDFPage
+from pdfminer.pdfpage import PDFPage # support python version <= 3.6.3
 from io import StringIO
 
 # def convert_pdf_to_txt(path):
