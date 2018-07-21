@@ -9,6 +9,7 @@ bridge.build_dict(dataset)
 PR = ProtocolReader.ProtocolReader('0011.pdf')
 protocol_list = PR.text.split(".")
 
+# search through protocol
 for line in protocol_list:
     fit = bridge.get_fit(line)
     if len(fit)>0:
