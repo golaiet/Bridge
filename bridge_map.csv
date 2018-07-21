@@ -7,3 +7,16 @@ AdverseEvent,"unfavorable, unintended, sign, symptom, disease, occurrence, proce
 AssessedResultRelationship,"link, assessment, observation, results, assessment, diagnosis, cause, evaluating, results
 "
 Biologic,"live, living, organism, virus, therapeutic serum, toxin, antitoxin, vaccine, blood, allergenic, analogous"
+CausalAssessment,"relatedness, diabetes"
+DefinedActivity,"activity, frequently, occurs, arm, experiment, reusable, template, study, recur, substance, administration"
+DefinedAdministrativeActivity,"activity, global, library, coordination, execut, treatment, arm, registration, period, end, obtain, consent, verify, eligibility, criteria, enroll, randomize, complete, visits, exit, break, blind, protocol, violation, premature, withdrawal"
+DefinedObservation,"activity, global, library, obtain, result, observing, monitoring, measuring, qualitatively, quantitatively, gathering, data, information, aspects, physiologic, psychologic, blood, chemistry, panel, body, mass, BMI, pressure, measurement, DNA, genotyping, genetic, measuring, pH, specimen, quality, review"
+DefinedProcedure,"physical, condition, subject, Procedures, disruption, body, incision, surgical, procedure, Conservative, procedures, reduction, luxated, physiotherapy, chiropractic, balneotherapy, acupuncture, shiatsu"
+DefinedStudyAgentTransfer,pill
+DefinedSubjectActivityGroup,"common, Clinic, visit, physical, exam, test, substance, administration, occur, contact, during, temperature, Recording, observation"
+DefinedSubstanceAdministration,"medications, substance, Administration, methotrexate, chemotherapy."
+Device,"use, diagnostic, prevention, monitoring, therapeutic, scientific, experimental, depressor, pacemaker, pump, EKG, machine, x-ray, spectrometer, polymerase, reaction, PCR, microscope, meter, Equipment
+"
+Drug,"diagnosis, cure, mitigation, treatment, prevention, affect, body, aspirin"
+Performer,"person, organization, device, execute, accomplish, surgeon, performing, monitoring, device, healthcare, provider, adjudication, committee, family, member, radiologist, vendor, pace"
+Person,"human, subject, name, death, birth, initials, postal, address, telephone, patient, people, men, man, women, woman"
