@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as ET
 import re # regex
-import numpy as np
+# import numpy as np
 import pandas as pd
 
 
@@ -56,10 +56,14 @@ class Entity():
         return self.get_term("attribute")
 
     def is_fit(self, term, case_sensitive = False):
-        term = re.compile(term.lower())
+        # try:
+        #     term = re.compile(str(term).lower())
+        # except:
+        #     return False
         for word in self.dict:
-            if term.search(word):
-                # print(word)
+            if term.strip().find(word.strip()) > -1:
+            # if term.search(word):
+            #     print(word + " : " + term)
                 return True
         return False
 
@@ -101,10 +105,14 @@ class Bridge():
         list = []
         for cls in self.classes:
             for word in term.split(" "):
-                if cls.is_fit(word, case_sensitive):
-                    # print(word)
-                    list.append(cls.name)
-                    # print(cls.name)
+                try:
+                    # print(term + " : " + word)
+                    if cls.is_fit(word, case_sensitive):
+
+                        list.append(cls.name)
+                        # print(cls.name)
+                except:
+                    pass
         return list
 
     def get_class(self, name, case_sensitive = False):
@@ -129,19 +137,19 @@ class Bridge():
                     list.append(cls)
         return list
 
-bridge = Bridge('BRIDGE.xmi')
-dataset = pd.read_csv('bridge_map.csv')
-bridge.build_dict(dataset)
-
-# examples
-
-# how to search a class in bridge
-for entity in bridge.search_class('bio'):
-    print(entity.name)
-
-# how to print class features by name
-for feature in bridge.get_class("BiologicEntity").get_features():
-    print(feature.attrib["name"])
-
-# find an entities that related to 'terribly patient death'
-bridge.get_fit('terribly patient death')
+# bridge = Bridge('BRIDGE.xmi')
+# dataset = pd.read_csv('bridge_map.csv')
+# bridge.build_dict(dataset)
+#
+# # examples
+#
+# # how to search a class in bridge
+# for entity in bridge.search_class('bio'):
+#     print(entity.name)
+#
+# # how to print class features by name
+# for feature in bridge.get_class("BiologicEntity").get_features():
+#     print(feature.attrib["name"])
+#
+# # find an entities that related to 'terribly patient death'
+# bridge.get_fit('the terribly patient death')
