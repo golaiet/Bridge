@@ -26,6 +26,7 @@ class Entity():
     def __init__(self, root):
         self.entity = root
         self.dict = []
+        self.childrens = []
 
         try:
             self.name = root.attrib['name']
@@ -41,6 +42,12 @@ class Entity():
             self.type = self.entity.tag
 
         self.tag = self.entity.tag
+
+    def build_children(self, term):
+        for child in self.get_term(term):
+            child_entity = Entity(child)
+            self.childrens.append(child_entity)
+            self.dict.append(child_entity.name)
 
     def get_term(self, term):
         f = search(self.entity, str(term)+"$")
