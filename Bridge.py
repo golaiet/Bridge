@@ -65,7 +65,7 @@ class Entity():
 
 
 class Bridge():
-    """ A python instantiation of bridge"""
+    """ A python instantiation of bridge (a collection of entities)"""
     def __init__(self, path):
 
         self.tree = ET.parse('BRIDGE.xmi')
