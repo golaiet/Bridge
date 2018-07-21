@@ -13,4 +13,4 @@ protocol_list = PR.text.split(".")
 for line in protocol_list:
     fit = bridge.get_fit(line)
     if len(fit)>0:
-        print(line + " : " + str(fit))
+        print(str(fit) + " : " + line)

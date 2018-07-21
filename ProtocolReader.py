@@ -94,8 +94,9 @@ class ProtocolReader():
         ct = str(text).lower() # ct = clean text
         for i in range(1000):
             ct = ct.replace("  ", " ")
-            ct = ct.replace("\n\n", "\n")
-            ct = ct.replace("\n \n", "\n")
+            ct = ct.replace("\n", " ")
+            # ct = ct.replace("\n\n", "\n")
+            # ct = ct.replace("\n \n", "\n")
         return ct
 
     def convert_pdf_to_txt(self, path):
