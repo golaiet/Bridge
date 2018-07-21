@@ -1,6 +1,7 @@
 import xml.etree.ElementTree as ET
 import re # regex
 import numpy as np
+import pandas as pd
 
 
 def search(root, term):
@@ -21,9 +22,11 @@ def search(root, term):
 
 
 class Entity():
-
+    """" An entity is a class in bridge. Each entity got features and attributes """
     def __init__(self, root):
         self.entity = root
+        self.dict = []
+
         try:
             self.name = root.attrib['name']
         except:
@@ -52,9 +55,17 @@ class Entity():
     def get_attributes(self):
         return self.get_term("attribute")
 
+    def is_fit(self, term, case_sensitive = False):
+        term = re.compile(term.lower())
+        for word in self.dict:
+            if term.search(word):
+                # print(word)
+                return True
+        return False
+
 
 class Bridge():
-
+    """ A python instantiation of bridge"""
     def __init__(self, path):
 
         self.tree = ET.parse('BRIDGE.xmi')
@@ -78,21 +89,49 @@ class Bridge():
 
         return list
 
-    def get_class(self, name):
+    def build_dict(self, dataset):
+        for index in range(len(dataset)):
+            entity = dataset.iloc[index][0]
+            bag_of_words = dataset.iloc[index][1]
+            cls = self.get_class(entity)
+            for word in bag_of_words.split(','):
+                cls.dict.append(word)
+
+    def get_fit(self, term, case_sensitive = False):
+        list = []
         for cls in self.classes:
-            if cls.name==name:
-                return cls
+            for word in term.split(" "):
+                if cls.is_fit(word, case_sensitive):
+                    # print(word)
+                    list.append(cls.name)
+                    # print(cls.name)
+        return list
+
+    def get_class(self, name, case_sensitive = False):
+        for cls in self.classes:
+            if case_sensitive:
+                if cls.name==name:
+                    return cls
+            else:
+                if cls.name.lower() == str(name).lower():
+                    return cls
         return False
 
-    def search_class(self, term):
+    def search_class(self, term, case_sensitive = False):
         reg = re.compile(term)
         list = []
         for cls in self.classes:
-            if reg.search(cls.name.lower()):
-                list.append(cls)
+            if case_sensitive:
+                if reg.search(cls.name):
+                    list.append(cls)
+            else:
+                if reg.search(cls.name.lower()):
+                    list.append(cls)
         return list
 
 bridge = Bridge('BRIDGE.xmi')
+dataset = pd.read_csv('bridge_map.csv')
+bridge.build_dict(dataset)
 
 # examples
 
@@ -103,3 +142,6 @@ for entity in bridge.search_class('bio'):
 # how to print class features by name
 for feature in bridge.get_class("BiologicEntity").get_features():
     print(feature.attrib["name"])
+
+# find an entity that fits the word 'death'
+bridge.get_fit('terribly patient death')

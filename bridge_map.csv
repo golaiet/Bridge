@@ -1,0 +1,4 @@
+﻿class,words
+AdverseEvent,"death, back pain, headache, pulmonary embolism, heart attack"
+BiologicEntity,"animal, human being, patient, birth"
+PerformedObservation,"lab test, taking vital signs, physical exam, specimen quality review, obtaining DNA sequence, genotyping a genetic variant, measuring the pH of a solution"

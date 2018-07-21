@@ -89,7 +89,7 @@ class ProtocolReader():
     def __init__(self, path):
         self.path = path
         self.text = self.text_cleanup(self.convert_pdf_to_txt(path))
-    
+
     def text_cleanup(self, text):
         ct = str(text).lower() # ct = clean text
         for i in range(1000):
@@ -98,7 +98,7 @@ class ProtocolReader():
             ct = ct.replace("\n \n", "\n")
         return ct
 
-    def convert_pdf_to_txt(path):
+    def convert_pdf_to_txt(self, path):
         rsrcmgr = PDFResourceManager()
         retstr = StringIO()
         codec = 'utf-8'
