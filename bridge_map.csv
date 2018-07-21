@@ -2,3 +2,8 @@
 AdverseEvent,"death, pain, headache, pulmonary, embolism, attack, adverse, reactions"
 BiologicEntity,"animal, human, patient, birth"
 PerformedObservation,"lab, DNA, genotyping,  pH, solution"
+Activity,"action, study, experiment, post-marketing, investigation, disease, registry, defined, planned, scheduled, performed"
+AdverseEvent,"unfavorable, unintended, sign, symptom, disease, occurrence, procedure, therapy"
+AssessedResultRelationship,"link, assessment, observation, results, assessment, diagnosis, cause, evaluating, results
+"
+Biologic,"live, living, organism, virus, therapeutic serum, toxin, antitoxin, vaccine, blood, allergenic, analogous"
