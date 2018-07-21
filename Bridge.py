@@ -143,5 +143,5 @@ for entity in bridge.search_class('bio'):
 for feature in bridge.get_class("BiologicEntity").get_features():
     print(feature.attrib["name"])
 
-# find an entity that fits the word 'death'
+# find an entities that related to 'terribly patient death'
 bridge.get_fit('terribly patient death')
