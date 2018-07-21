@@ -1,4 +1,4 @@
 ﻿class,words
 AdverseEvent,"death, pain, headache, pulmonary, embolism, attack, adverse, reactions"
-BiologicEntity,"animal, human being, patient, birth"
+BiologicEntity,"animal, human, patient, birth"
 PerformedObservation,"lab, DNA, genotyping,  pH, solution"
