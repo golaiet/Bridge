@@ -22,11 +22,11 @@ def search(root, term):
 
 
 class Entity():
-    """" An entity is a class in bridge. Each entity got features and attributes """
+    """" An entity is a class in bridge represent entity, features or attributes """
     def __init__(self, root):
         self.entity = root
         self.dict = []
-        self.childrens = []
+        self.children = []
 
         try:
             self.name = root.attrib['name']
@@ -46,15 +46,15 @@ class Entity():
     def build_children(self, term):
         for child in self.get_term(term):
             child_entity = Entity(child)
-            self.childrens.append(child_entity)
+            self.children.append(child_entity)
             self.dict.append(child_entity.name)
 
     def get_term(self, term):
         f = search(self.entity, str(term)+"$")
-        childrens = []
+        children = []
         if len(f) > 0:
-            childrens = f[0].getchildren()
-        return childrens
+            children = f[0].getchildren()
+        return children
 
     def get_features(self):
         return self.get_term("feature")
@@ -76,7 +76,7 @@ class Entity():
 
 
 class Bridge():
-    """ A python instantiation of bridge (a collection of entities)"""
+    """ A python instantiation of bridge (as a collection of entities (features and attributes)"""
     def __init__(self, path):
 
         self.tree = ET.parse('BRIDGE.xmi')
@@ -90,8 +90,8 @@ class Bridge():
         if reg.search(root.tag.lower()):
             list.append(Entity(root))
 
-        for i in range(len(root)):
-            temp_list = self.search(root[i], term)
+        for index in range(len(root)):
+            temp_list = self.search(root[index], term)
             try:
                 for item in temp_list:
                     list.append(item)
@@ -115,7 +115,6 @@ class Bridge():
                 try:
                     # print(term + " : " + word)
                     if cls.is_fit(word, case_sensitive):
-
                         list.append(cls.name)
                         # print(cls.name)
                 except:
